@@ -14,7 +14,7 @@ function simulate_exploration1
         for block = 1:nBlocks
             data(s).mu = [data(s).mu; repmat(normrnd(0,sqrt(q0)),N,1)];
             data(s).R = [data(s).R; normrnd(data(s).mu,sqrt(q))];
-            data(s).block = [data(s).block; zeros(N,1)+block];
+            data(s).block = [data(s).block; zeros(N,1)+block];    % 두 array를 ;로 연결했으므로 최종적인 array는 세로로 늘어선 200*1크기의 array가 됨
         end
         
         % simulate algorithms
