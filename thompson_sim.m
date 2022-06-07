@@ -1,11 +1,11 @@
-function [data,latents] = thompson_sim(param,data)
+function [data,latents] = thompson_sim(param,data)   % 각 subject의 data인 data(s) 가 들어감
     
     % One-dimensional Kalman filter.
     
     % parameters
-    q = param(1);           % reward variance
-    q1 = param(2);
-    q2 = param(3);
+    q = param(1);           % reward variance : 10 / 10
+    q1 = param(2);          % 10 / 100 
+    q2 = param(3);          % 0(fixed value in exp1) / 100
     
     for n = 1:length(data.block)
         
@@ -23,7 +23,7 @@ function [data,latents] = thompson_sim(param,data)
             r = data.r(n);
         catch
             if rand < p
-                c = 1;
+                c = 1;  % 즉 p의 확률로 Arm 1을 선택
             else
                 c = 2;
             end
