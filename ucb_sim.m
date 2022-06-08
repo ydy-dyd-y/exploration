@@ -13,7 +13,7 @@ function [data,latents] = ucb_sim(param,data)
         
         % initialization at the start of each block
         if n == 1 || data.block(n)~=data.block(n-1)
-            m = [0 0];  % posterior mean
+            m = [0 0];  % posterior mean    : (n-1)번째 trial의 input을 받고서 다음번(n번)에 나올 feedback(r)을 예측한 값
             s = [q1 q2];  % posterior variance
         end
         
@@ -38,7 +38,7 @@ function [data,latents] = ucb_sim(param,data)
         data.r(n,1) = r;
         
         % update
-        k = s(c)/(s(c)+q);         % Kalman gain
+        k = s(c)/(s(c)+q);         % Kalman gain 
         err = r - m(c);            % prediction error
         m(c) = m(c) + k*err;       % posterior mean
         s(c) = s(c) - k*s(c);      % posterior variance
